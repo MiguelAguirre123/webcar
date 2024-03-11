@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const communityRouter = require('./Routers/communityRouter');
 //routers
 const userRouter = require('./Routers/userRouter.js');
 
@@ -23,4 +24,5 @@ connection.sync({force: false})
     });
 
 //api
-app.use('/api', userRouter);
+app.use('/api', communityRouter);
+app.use('/api',userRouter);
