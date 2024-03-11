@@ -5,8 +5,9 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const communityRouter = require('./Routers/communityRouter');
 //routers
-//const restaurantrouter = require('./Routers/restaurantrouter');
+const userRouter = require('./Routers/userRouter.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,4 +24,5 @@ connection.sync({force: false})
     });
 
 //api
-//app.use('/api', restaurantrouter);
+app.use('/api', communityRouter);
+app.use('/api',userRouter);
