@@ -13,6 +13,14 @@ carName:{
     type: DataTypes.STRING,
         alloNull : false
 },
+carModel:{
+    type: DataTypes.STRING,
+    alloNull : false
+},
+carBrand:{
+    type: DataTypes.STRING,
+    alloNull : false
+},
 userId:{
     type : DataTypes.INTEGER,
     alloNull : false
