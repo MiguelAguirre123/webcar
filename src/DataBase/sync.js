@@ -4,13 +4,11 @@ const connection = require('./connection');
 
 const user = require('../Models/user');
 const car = require('../Models/car')
-/*
-const restaurant = require('../Models/restaurant');
-const product = require('../Models/product');*/
+const community = require('../Models/community');
+const userCommunity = require('../Models/userCommunity');
 
 function sync(){
-
-    console.log("ingreso");
+// this is for the car-user table
     user.hasMany(car,{
         foreignKey:'userId',
         onDelete: 'restrict',
@@ -18,7 +16,14 @@ function sync(){
     });
     car.belongsTo(user,{
         foreignKey:'userId'
+    });
+
+    
+//this is for the community-user table
+/*    community.hasMany(user,{
+        foreignKey:
     })
+*/
 }
 
 sync();
