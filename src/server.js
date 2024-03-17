@@ -5,9 +5,11 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const communityRouter = require('./Routers/communityRouter');
+
 //routers
 const userRouter = require('./Routers/userRouter.js');
+const communityRouter = require('./Routers/communityRouter');
+const carRouter = require('./Routers/carRouter.js')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,3 +28,5 @@ connection.sync({force: false})
 //api
 app.use('/api', communityRouter);
 app.use('/api',userRouter);
+app.use('/api',carRouter)
+

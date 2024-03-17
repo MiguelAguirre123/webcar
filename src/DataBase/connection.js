@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 
 var dataBase = 'WebCar'; 
 var userName = 'postgres'; 
-var password = 'postgres'; 
+var password = 'Sarisbo2206'; 
 
  
 
