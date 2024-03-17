@@ -1,32 +1,35 @@
-const {Model, DataTypes}= require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 const connection = require('../DataBase/connection');
 
-class community extends Model{};
+class piece extends Model{}
 
-community.init({
-    communityId:{
+piece.init({
+    pieceId:{
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    communityName:{
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false
-    },
-    communityCreator:{
+    pieceName:{
         type: DataTypes.STRING,
         allowNull: false
     },
-    communityDescription:{
+    pieceBrand:{
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+    piecePrice:{
+        type: DataTypes.DECIMAL,
+        allowNull: false
+    },
+    pieceState:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 },{
     sequelize: connection,
-    modelName: 'community',
+    modelName: 'piece',
     paranoid: true,
     deletedAt: 'destroyTime'
 });
 
-module.exports = community;
+module.exports = piece;
