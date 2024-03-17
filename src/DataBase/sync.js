@@ -4,12 +4,8 @@ const connection = require('./connection');
 const publication = require('../Models/publication');
 const user = require('../Models/user');
 const car = require('../Models/car')
-
-//JSON
-/*
-const departmentjson = require('./JsonFiles/departmentjson');
-const cityjson = require('./JsonFiles/cityjson');
-*/
+const community = require('../Models/community');
+const userCommunity = require('../Models/userCommunity');
 
 async function sync(){
 
@@ -41,13 +37,14 @@ async function sync(){
     });
     car.belongsTo(user,{
         foreignKey:'userId'
-    })
+    });
 
-    //create json
-    /*
-    departmentjson.createDepartments();
-    cityjson.createCities();
-    */
+    
+//this is for the community-user table
+/*    community.hasMany(user,{
+        foreignKey:
+    })
+*/
 }
 
 sync();
