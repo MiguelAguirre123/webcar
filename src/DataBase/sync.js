@@ -1,35 +1,14 @@
 const connection = require('./connection');
 
-//Models
-const publication = require('../Models/publication');
+//Models 
+
 const user = require('../Models/user');
-const car = require('../Models/car')
-const community = require('../Models/community');
+const car = require('../Models/car');
 const userCommunity = require('../Models/userCommunity');
+const community = require('../Models/community');
 
-async function sync(){
+function sync(){
 
-    //Foreign Key restaurant - product
-    /*
-    restaurant.hasMany(product,{
-        foreignKey: 'restaurantId',
-        onDelete: 'restrict',
-        onUpdate: 'cascade'
-    });
-    product.belongsTo(restaurant,{
-        foreignKey: 'restaurantId'
-    })
-    */
-
-    await connection.sync({force: false})
-    .then(() => {
-        console.log('Base de datos sincronizada');
-    })
-    .catch((error) => {
-        console.error('Error al sincronizar la base de datos: ', error)
-    });
-
-    console.log("ingreso");
     user.hasMany(car,{
         foreignKey:'userId',
         onDelete: 'restrict',
@@ -37,14 +16,27 @@ async function sync(){
     });
     car.belongsTo(user,{
         foreignKey:'userId'
-    });
-
-    
-//this is for the community-user table
-/*    community.hasMany(user,{
-        foreignKey:
     })
-*/
+
+
+    // foreign key user userCommunity.
+    user.hasMany(userCommunity,{
+        foreignKey: 'userId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    userCommunity.belongsTo(user,{
+        foreignKey: 'userId'
+    });
+    // foreing key community userCommunity.
+    community.hasMany(userCommunity,{
+        foreignKey: 'communityId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    userCommunity.belongsTo(community,{
+        foreignKey: 'communityId'
+    });
 }
 
 sync();
