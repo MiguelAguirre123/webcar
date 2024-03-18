@@ -6,15 +6,21 @@ const user = require('../Models/user');
 const car = require('../Models/car')
 const userCommunity = require('../Models/userCommunity');
 const community = require('../Models/community');
-
-//JSON
-/*
-const departmentjson = require('./JsonFiles/departmentjson');
-const cityjson = require('./JsonFiles/cityjson');
-*/
+const customer = require('../Models/customer');
+const product = require('../Models/product');
 
 async function sync(){
 
+    // foreign key customer product.
+    customer.hasMany(product,{
+        foreignKey:'customerId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    product.belongsTo(customer,{
+        foreignKey: 'customerId'
+    });
+    
     // foreign key user car.
     user.hasMany(car,{
         foreignKey:'userId',
@@ -65,11 +71,19 @@ async function sync(){
 
     console.log("ingreso");
 
-    //create json
-    /*
-    departmentjson.createDepartments();
-    cityjson.createCities();
-    */
 }
 
 sync();
+
+
+
+
+
+
+
+
+
+
+
+
+

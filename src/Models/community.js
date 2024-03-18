@@ -29,4 +29,4 @@ community.init({
     deletedAt: 'destroyTime'
 });
 
-module.exports = community;
+module.exports=community;
