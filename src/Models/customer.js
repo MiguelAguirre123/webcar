@@ -1,45 +1,45 @@
 const {Model, DataTypes}= require('sequelize');
 const connection = require('../DataBase/connection')
 
-class user extends Model{}
+class customer extends Model{}
 
-user.init({
+customer.init({
 
-userId:{
+customerId:{
     type : DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
 },
-userName:{
+customerName:{
     type : DataTypes.STRING,
     unique: true,
     allowNull:false
 },
-userPhone: {
+customerPhone: {
     type: DataTypes.STRING,
     unique: true,
     allowNull: false
 },
-userNickName:{
+customerDescrip:{
     type: DataTypes.STRING,
     unique: true,
     allowNull: false
 },
-userAddress:{
+customerAddress:{
     type: DataTypes.STRING,
     unique: true,
     allowNull: false
 },
-userEmail:{
+customerEmail:{
     type: DataTypes.STRING,
     unique: true,
     allowNull: false
 }
 },{
     sequelize : connection,
-    modelName : 'user',
+    modelName : 'customer',
     paranoid: true,
     deletedAt: 'destroyTime'   
 });
 
-module.exports = user;
+module.exports = customer;

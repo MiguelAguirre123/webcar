@@ -5,7 +5,7 @@ async function createPublication(req, res){
     try{
         await publication.create({
             publicationContent: req.body.publicationContent,
-            usuarioId: req.body.usuarioId
+            userId: req.body.userId
 
         }).then(function (data){
             return res.status(200).json({
@@ -28,7 +28,7 @@ async function listPublication(req, res){
             attributes: [
                 'publicationId',
                 'publicationContent',
-                'usuarioId'
+                'userId'
             ],
             order: ['publicationId']
         }).then(function (data){
@@ -50,7 +50,7 @@ async function updatePublication(req, res){
     try{
         await publication.update({
             publicationContent: req.body.publicationContent,
-            usuarioId: req.body.usuarioId
+            userId: req.body.useroId
 
 
         },{
