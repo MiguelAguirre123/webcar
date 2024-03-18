@@ -7,7 +7,7 @@ const port = process.env.PORT || 1337;
 
 
 //routers
-const publicationrouter = require('./Routers/publicationrouter');
+const publicationrouter = require('./Routers/publicationRouter');
 const userRouter = require('./Routers/userRouter.js');
 const communityRouter = require('./Routers/communityRouter');
 const carRouter = require('./Routers/carRouter.js')
