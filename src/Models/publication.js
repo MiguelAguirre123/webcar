@@ -20,8 +20,8 @@ publication.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    usuarioId:{
-        type: DataTypes.STRING,
+    userId:{
+        type: DataTypes.INTEGER,
         allowNull: false
     }
 },{
