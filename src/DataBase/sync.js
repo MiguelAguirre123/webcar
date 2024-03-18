@@ -8,6 +8,8 @@ const userCommunity = require('../Models/userCommunity');
 const community = require('../Models/community');
 const customer = require('../Models/customer');
 const product = require('../Models/product');
+const sale = require('../Models/sale');
+const piece = require('../Models/piece');
 
 async function sync(){
 
@@ -60,6 +62,47 @@ async function sync(){
     publication.belongsTo(user,{
         foreignKey: 'userId'
     });
+
+    // foreing key car sale.
+    car.hasMany(sale,{
+        foreignKey: 'carId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    sale.belongsTo(car,{
+        foreignKey: 'carId'
+    });
+
+    // foreing key piece sale.
+    piece.hasMany(sale,{
+        foreignKey: 'pieceId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    sale.belongsTo(piece,{
+        foreignKey: 'pieceId'
+    });
+
+    // foreing key product sale.
+    product.hasMany(sale,{
+        foreignKey: 'productId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    sale.belongsTo(product,{
+        foreignKey: 'productId'
+    });
+
+    // foreing key publication sale.
+    publication.hasMany(sale,{
+        foreignKey: 'publicationId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    sale.belongsTo(publication,{
+        foreignKey: 'publicationId'
+    });
+
 
     await connection.sync({force: false})
     .then(() => {
