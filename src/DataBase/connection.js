@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize'); 
 
-var dataBase = 'webCar'; 
+var dataBase = 'WebCar'; 
 var userName = 'postgres'; 
-var password = 'Luismi0522!'; 
+var password = 'postgres'; 
 
 const connection = new Sequelize(dataBase, userName, password, { 
     host: 'localhost', 

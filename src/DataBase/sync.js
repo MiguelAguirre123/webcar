@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
-//Models
-const publication = require('../Models/publication');
+//Models 
+
 const user = require('../Models/user');
 const car = require('../Models/car')
 const userCommunity = require('../Models/userCommunity');
@@ -10,9 +10,13 @@ const customer = require('../Models/customer');
 const product = require('../Models/product');
 const sale = require('../Models/sale');
 const piece = require('../Models/piece');
+const car = require('../Models/car');
+const userCommunity = require('../Models/userCommunity');
+const community = require('../Models/community');
 
-async function sync(){
 
+function sync(){
+  console.log("ingreso");
     // foreign key customer product.
     customer.hasMany(product,{
         foreignKey:'customerId',
@@ -102,17 +106,25 @@ async function sync(){
     sale.belongsTo(publication,{
         foreignKey: 'publicationId'
     });
-
-
-    await connection.sync({force: false})
-    .then(() => {
-        console.log('Base de datos sincronizada');
-    })
-    .catch((error) => {
-        console.error('Error al sincronizar la base de datos: ', error)
+  
+    // foreign key user userCommunity.
+    user.hasMany(userCommunity,{
+        foreignKey: 'userId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
     });
-
-    console.log("ingreso");
+    userCommunity.belongsTo(user,{
+        foreignKey: 'userId'
+    });
+    // foreing key community userCommunity.
+    community.hasMany(userCommunity,{
+        foreignKey: 'communityId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    userCommunity.belongsTo(community,{
+        foreignKey: 'communityId'
+    });
 
 }
 
