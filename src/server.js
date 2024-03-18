@@ -35,5 +35,4 @@ app.use('/api',userRouter);
 app.use('/api',customerRouter);
 app.use('/api',carRouter);
 app.use('/api',productRouter);
-app.use('/api',carRouter);
 
