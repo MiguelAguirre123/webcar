@@ -14,10 +14,6 @@ sale.init({
         type : DataTypes.INTEGER,
         alloNull : true
     },
-    pieceId:{
-        type : DataTypes.INTEGER,
-        alloNull : true
-    },
     productId:{
         type : DataTypes.INTEGER,
         alloNull : true
