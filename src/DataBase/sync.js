@@ -10,9 +10,7 @@ const customer = require('../Models/customer');
 const product = require('../Models/product');
 const sale = require('../Models/sale');
 const piece = require('../Models/piece');
-const car = require('../Models/car');
-const userCommunity = require('../Models/userCommunity');
-const community = require('../Models/community');
+const publication = require('../Models/publication');
 
 
 function sync(){
