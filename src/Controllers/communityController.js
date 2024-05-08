@@ -102,6 +102,30 @@ async function enableCommunity(req,res){
     console.log(e);
     }
 }
+async function getCommunity(req, res){
+    try{
+        await community.findOne({
+            where: {communityId : req.params.communityId},
+            attributes: [
+                'communityId',
+                'communityName',
+                'communityCreator',
+                'communityDescription'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
 
 
 module.exports = {
@@ -109,5 +133,6 @@ module.exports = {
     updateCommunity,
     disableCommunity,
     enableCommunity,
-    listCommunity
+    listCommunity,
+    getCommunity
 }

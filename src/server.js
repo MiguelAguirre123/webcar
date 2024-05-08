@@ -8,12 +8,13 @@ const port = process.env.PORT || 3000;
 
 //routers
 
-const publicationRouter = require('./Routers/publicationRouter');
+const publicationRouter = require('./Routers/publicationrouter');
 const userRouter = require('./Routers/userRouter.js');
 const communityRouter = require('./Routers/communityRouter');
 const carRouter = require('./Routers/carRouter.js')
 const customerRouter = require('./Routers/customerRouter.js');
 const productRouter= require('./Routers/productRouter.js');
+const userCommunityRouter = require('./Routers/userCommunityRouter.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,4 +37,5 @@ app.use('/api',customerRouter);
 app.use('/api',carRouter);
 app.use('/api',productRouter);
 app.use('/api',publicationRouter);
+app.use('/api', userCommunityRouter);
 

@@ -130,5 +130,5 @@ module.exports = {
     listProduct,
     updateProduct,
     disableProduct,
-    enableProduct
+    enableProduct
 }
