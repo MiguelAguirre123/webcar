@@ -2,8 +2,9 @@ require('./DataBase/sync.js');
 
 const connection = require('./DataBase/connection');
 const express = require('express');
+const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1337;
 
 
 //routers
@@ -18,17 +19,13 @@ const userCommunityRouter = require('./Routers/userCommunityRouter.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 
-connection.sync({force: false})
-    .then(() => {
-        console.log('Base de datos sincronizada');
-        app.listen(port, ()=>{
-            console.log('the app is running on port ' + port);
-        });
-    })
-    .catch((error) => {
-        console.error('Error al sincronizar la base de datos: ', error)
-    });
+app.listen(port, () => {
+  console.log("the application is running at the port: " + port);
+})
 
 //api
 app.use('/api', communityRouter);
