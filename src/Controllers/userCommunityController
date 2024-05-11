@@ -1,0 +1,106 @@
+require('express');
+
+const community = require('../Models/community');
+const userCommunity = require('../Models/userCommunity')
+const user = require('../Models/user');
+
+
+//crear usuario
+async function createUserCommunity(req,res){
+    try{
+        await userCommunity.create({
+            userId: req.body.userId,
+            communityId: req.body.communityId
+        }).then(function(data){
+            return res.status(200).json({
+                data:data
+            })
+        }).catch(error =>{
+            return res.status(400).json({
+                error:error
+            })
+        })
+    }
+    catch(e){
+        console.log(e)
+    }
+}
+
+//listar usuaarios
+async function listUserCommunity(req,res){
+    try{
+        await userCommunity.findAll({
+            attributes: [
+            'userCommunityId',
+            'userId',
+            'communityId'
+            ],
+            order:['userId'],
+            include: [{
+                    model: community,
+                    attributes: ['communityName']
+                },{
+                model: user,
+                attributes: ['userName']
+            }]
+        }).then(function(data){
+            return res.status(200).json({
+                data:data
+            });
+        }) .catch(error =>{
+            console.log(error);
+            return res.status(400).json({
+                error:error
+            })
+        })
+
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
+async function disableUserCommunity(req,res){
+    try{
+        await userCommunity.destroy({
+
+            where: { userCommunityId: req.params.userCommunityId}
+        }).then(function(data){
+            return res.status(200).json({
+                data:data
+            });
+        }) .catch(error =>{
+            return res.status(400).json({
+                error:error
+            })
+        })
+
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+async function enableUserCommunity(req,res){
+    try {
+        await userCommunity.restore({
+            where: {userCommunityId: req.params.userCommunityId}
+        }).then(function(data){
+            return res.status(200).json({
+                data:data
+            });
+        }).catch(error =>{
+        return res.status(400).json({
+            error: error
+            });
+        })
+    } catch (e) {
+    console.log(e);
+    }
+}
+
+module.exports = {
+    createUserCommunity,
+    listUserCommunity,
+    disableUserCommunity,
+    enableUserCommunity
+}
