@@ -1,35 +1,38 @@
 const{Model,DataTypes} = require('sequelize');
 const connection = require('../DataBase/connection');
 
-class car extends Model{}
 
-car.init({
-    carId:{
+class product extends Model{}
+
+product.init({
+    productId:{
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    carName:{
+    productName:{
         type: DataTypes.STRING,
         alloNull : false
     },
-    carModel:{
-        type: DataTypes.STRING,
+    productDescription: {
+        type : DataTypes.STRING,
         alloNull : false
     },
-    carBrand:{
-        type: DataTypes.STRING,
+    productPrice:{
+        type: DataTypes.FLOAT,
         alloNull : false
     },
-    userId:{
+
+    customerId:{
         type : DataTypes.INTEGER,
         alloNull : false
     }
+
 },{
     sequelize : connection,
-    modelName : 'car',
+    modelName : 'product',
     paranoid: true,
-    deletedAt: 'destroyTime'   
-})
+    deletedAt: 'destroyTime'      
+});
 
-module.exports = car;
+module.exports=product;
