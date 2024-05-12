@@ -46,6 +46,30 @@ async function listPublication(req, res){
     }
 }
 
+async function getPublication(req, res){
+    try{
+        await publication.findOne({
+            where: {publicationId : req.params.publicationId},
+            attributes: [
+                'publicationId',
+                'publicationContent',
+                'userId'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
 async function updatePublication(req, res){
     try{
         await publication.update({
@@ -111,6 +135,7 @@ async function enablePublication(req, res){
 module.exports = {
     createPublication,
     listPublication,
+    getPublication,
     updatePublication,
     disablePublication,
     enablePublication
