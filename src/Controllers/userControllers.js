@@ -28,7 +28,7 @@ async function createUser(req,res){
 }
 
 //listar usuaarios
-async function listUser(req,res){
+async function listUsers(req,res){
     try{
         await user.findAll({
             attributes: [
@@ -119,11 +119,38 @@ async function enableUser(req,res){
     console.log(e);
     }
 }
+async function getUser(req, res){
+    try{
+        await user.findOne({
+            where: {userId: req.params.userId},
+            attributes: [
+                'userId',
+                'userName',
+                'userPhone',
+                'userNickName',
+                'userAddress',
+                'userEmail'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
 
 module.exports = {
     createUser,
-    listUser,
+    listUsers,
     updateUser,
     disableUser,
-    enableUser
+    enableUser, 
+    getUser
 }
