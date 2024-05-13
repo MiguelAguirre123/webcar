@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.post('/createproduct',productController.createProduct);
 router.get('/listproduct/:customerId', productController.listProduct);
-router.put('/updateproduct/:customerId', productController.updateProduct);
+router.get('/getproduct/:productId', productController.getProduct);
+router.put('/updateproduct/:productId', productController.updateProduct);
 router.put('/disableproduct/:productId', productController.disableProduct);
 router.put('/enableproduct/:productId', productController.enableProduct);
 
