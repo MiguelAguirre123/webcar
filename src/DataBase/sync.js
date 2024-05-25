@@ -9,8 +9,7 @@ const community = require('../Models/community');
 const customer = require('../Models/customer');
 const product = require('../Models/product');
 const sale = require('../Models/sale');
-const piece = require('../Models/piece');
-const publication = require('../Models/publication');
+const publication = require('../Models/publication')
 
 
 function sync(){
@@ -73,16 +72,6 @@ function sync(){
     });
     sale.belongsTo(car,{
         foreignKey: 'carId'
-    });
-
-    // foreing key piece sale.
-    piece.hasMany(sale,{
-        foreignKey: 'pieceId',
-        onDelete: 'restrict',
-        onUpdate: 'cascade'
-    });
-    sale.belongsTo(piece,{
-        foreignKey: 'pieceId'
     });
 
     // foreing key product sale.

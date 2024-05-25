@@ -119,11 +119,38 @@ async function enableCustomer(req,res){
     console.log(e);
     }
 }
+async function getCustomer(req, res) {
+    try {
+        await customer.findOne({
+            where: { customerId: req.params.customerId },
+            attributes: [
+                
+                'customerName',
+                'customerPhone',
+                'customerDescrip',
+                'customerAddress',
+                'customerEmail'
+            ],
+        }).then(function (data) {
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
 
 module.exports = {
     createCustomer,
     listCustomer,
     updateCustomer,
     disableCustomer,
-    enableCustomer
+    enableCustomer,
+    getCustomer
 }
