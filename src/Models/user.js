@@ -25,6 +25,10 @@ userNickName:{
     unique: true,
     allowNull: false
 },
+userPassword:{
+    type: DataTypes.STRING,
+    allowNull: false
+},
 userAddress:{
     type: DataTypes.STRING,
     unique: true,

@@ -63,7 +63,7 @@ async function updateProduct(req,res){
             productPrice: req.body.productPrice,
             customerId: req.body.customerId,            
         },{
-            where: { customerId: req.params.customerId}
+            where: { productId: req.params.productId}
 
         }).then(function(data){
             return res.status(200).json({
@@ -123,6 +123,32 @@ async function enableProduct(req,res){
     }
 }
 
+async function getProduct(req, res){
+    try{
+        await product.findOne({
+            where: {productId: req.params.productId},
+            attributes: [
+                'productId',
+                'productName',
+                'productDescription',
+                'productPrice',
+                'customerId'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
 
 
 module.exports = {
@@ -130,5 +156,6 @@ module.exports = {
     listProduct,
     updateProduct,
     disableProduct,
-    enableProduct
+    enableProduct,
+    getProduct
 }
