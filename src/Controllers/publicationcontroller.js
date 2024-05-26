@@ -48,12 +48,12 @@ async function createPublication(req, res) {
                 publicationContent: req.body.publicationContent,
                 userId: req.body.userId
             })
-            .then(function (data) {
-                return res.status(200).json({ data });
-            })
-            .catch(error => {
-                return res.status(400).json({ error });
-            });
+                .then(function (data) {
+                    return res.status(200).json({ data });
+                })
+                .catch(error => {
+                    return res.status(400).json({ error });
+                });
         });
     } catch (error) {
         console.error("Error in createPublication:", error);
@@ -73,12 +73,12 @@ async function listPublication(req, res) {
                 ],
                 order: ['publicationId']
             })
-            .then(function (data) {
-                return res.status(200).json({ data });
-            })
-            .catch(error => {
-                return res.status(400).json({ error });
-            });
+                .then(function (data) {
+                    return res.status(200).json({ data });
+                })
+                .catch(error => {
+                    return res.status(400).json({ error });
+                });
         });
     } catch (error) {
         console.error("Error in listPublication:", error);
@@ -98,12 +98,12 @@ async function getPublication(req, res) {
                     'userId'
                 ],
             })
-            .then(function (data) {
-                return res.status(200).json({ data });
-            })
-            .catch(error => {
-                return res.status(400).json({ error });
-            });
+                .then(function (data) {
+                    return res.status(200).json({ data });
+                })
+                .catch(error => {
+                    return res.status(400).json({ error });
+                });
         });
     } catch (error) {
         console.error("Error in getPublication:", error);
@@ -121,12 +121,12 @@ async function updatePublication(req, res) {
             }, {
                 where: { publicationId: req.params.publicationId }
             })
-            .then(function (data) {
-                return res.status(200).json({ data });
-            })
-            .catch(error => {
-                return res.status(400).json({ error });
-            });
+                .then(function (data) {
+                    return res.status(200).json({ data });
+                })
+                .catch(error => {
+                    return res.status(400).json({ error });
+                });
         });
     } catch (error) {
         console.error("Error in updatePublication:", error);
@@ -141,12 +141,12 @@ async function disablePublication(req, res) {
             await publication.destroy({
                 where: { publicationId: req.params.publicationId }
             })
-            .then(function (data) {
-                return res.status(200).json({ data });
-            })
-            .catch(error => {
-                return res.status(400).json({ error });
-            });
+                .then(function (data) {
+                    return res.status(200).json({ data });
+                })
+                .catch(error => {
+                    return res.status(400).json({ error });
+                });
         });
     } catch (error) {
         console.error("Error in disablePublication:", error);
@@ -161,12 +161,12 @@ async function enablePublication(req, res) {
             await publication.restore({
                 where: { publicationId: req.params.publicationId }
             })
-            .then(function (data) {
-                return res.status(200).json({ data });
-            })
-            .catch(error => {
-                return res.status(400).json({ error });
-            });
+                .then(function (data) {
+                    return res.status(200).json({ data });
+                })
+                .catch(error => {
+                    return res.status(400).json({ error });
+                });
         });
     } catch (error) {
         console.error("Error in enablePublication:", error);
