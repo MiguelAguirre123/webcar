@@ -12,7 +12,7 @@ const sale = require('../Models/sale');
 const publication = require('../Models/publication')
 
 
-function sync(){
+async function sync(){
   console.log("ingreso");
     // foreign key customer product.
     customer.hasMany(product,{
@@ -111,6 +111,14 @@ function sync(){
     });
     userCommunity.belongsTo(community,{
         foreignKey: 'communityId'
+    });
+
+    await connection.sync({force: false})
+    .then(() => {
+        console.log('Base de datos sincronizada');
+    })
+    .catch((error) => {
+        console.error('Error al sincronizar la base de datos: ', error)
     });
 
 }
